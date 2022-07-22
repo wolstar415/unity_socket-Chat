@@ -12,7 +12,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/50cef547136cdc141995d1711546dca37446f6f270f77467af10dfd676dbd3d0/System.Diagnostics.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9384495d2a482ac7341d67ca84e16d267d16c62458a9d67a92b119199a9/System.Threading.Tasks.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9e76859e27e7ada11744f8967d6c1ddc24e519d4173072aa6fbeee796592b/JsonElement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a79ff76d7020752b2c85485c71466ea7c7de891a642bb17894262cfac6850e2/JsonReaderHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d23a8acf42a067f78757b41d8cfbef9a17ee8a1207c44a85dfe36573de7a44/JsonSerializer.Read.String.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f21037ae58ae24b5918e04a8822d848cc5e37d3665598d34a21cdd179b9fe/JsonTokenType.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ChatManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LobyManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -87,7 +89,7 @@
       <workItem from="1658345899814" duration="3781000" />
       <workItem from="1658428569174" duration="13901000" />
       <workItem from="1658457045639" duration="382000" />
-      <workItem from="1658461540484" duration="19515000" />
+      <workItem from="1658461540484" duration="25204000" />
     </task>
     <servers />
   </component>
