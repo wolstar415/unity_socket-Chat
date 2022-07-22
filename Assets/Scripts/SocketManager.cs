@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using SocketIOClient;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -45,10 +46,11 @@ public class SocketManager : MonoBehaviour
             UnityMainThreadDispatcher.Instance().Enqueue(() => { SceneManager.LoadScene("Loby"); });
         };
         socket.OnDisconnected += (sender, e) => { Debug.Log("disconnect: " + e); };
+        
+        
     }
-
     
-
+    
     private void OnDestroy()
     {
         socket.Disconnect();

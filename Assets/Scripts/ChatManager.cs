@@ -9,6 +9,7 @@ public class ChatManager : MonoBehaviour
     [SerializeField] private GameObject textPrefab; // 채팅프리팹
     [SerializeField] private Transform textParent; //채팅 생성시킬곳
     [SerializeField] private TMP_InputField inputField;//채팅 입력칸
+    [SerializeField] private TextMeshProUGUI roomNameText;//방이름
     [SerializeField] private Transform playerparent; //플레이어 목록
     [SerializeField] private string[] players; //플레이어 목록들
     
@@ -82,6 +83,7 @@ public class ChatManager : MonoBehaviour
     public void ChatStart()
     //채팅 실행
     {
+        roomNameText.text = GameManager.inst.room;
         GameManager.inst.IsChat = true;
         for (int i = 0; i < 8; i++)
         {
