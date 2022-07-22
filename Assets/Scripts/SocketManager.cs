@@ -1,64 +1,79 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection.Emit;
+using Newtonsoft.Json;
 using SocketIOClient;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-//using Debug = System.Diagnostics.Debug;
 
 public class SocketManager : MonoBehaviour
 {
     public SocketIOUnity socket;
-    // Start is called before the first frame update
+
+    public static SocketManager inst;
+
+    private void Awake()
+    {
+        if (inst == null) //instance가 null. 즉, 시스템상에 존재하고 있지 않을때
+        {
+            inst = this; //내자신을 instance로 넣어줍니다.
+            DontDestroyOnLoad(gameObject); //OnLoad(씬이 로드 되었을때) 자신을 파괴하지 않고 유지
+        }
+        else
+        {
+            if (inst != this) //instance가 내가 아니라면 이미 instance가 하나 존재하고 있다는 의미
+                Destroy(this.gameObject); //둘 이상 존재하면 안되는 객체이니 방금 AWake된 자신을 삭제
+        }
+    }
+    
+
     void Start()
     {
-        //var uri = new Uri("http://127.0.0.1:7777");
-        var uri = new Uri("http://3.36.51.5:57825");
-        socket = new SocketIOUnity(uri, new SocketIOOptions
-        {
-            Query = new Dictionary<string, string>
-            {
-                {"token", "UNITY" }
-            }
-            ,
-            EIO = 4
-            ,
-            Transport = SocketIOClient.Transport.TransportProtocol.WebSocket
-        });
-        
-        socket.OnConnected += (sender, e) =>
-        {
-            Debug.Log("socket.OnConnected");
-        };
-        socket.OnDisconnected += (sender, e) =>
+       var uri = new Uri("http://127.0.0.1:7777");
+       socket = new SocketIOUnity(uri, new SocketIOOptions
+       {
+           Query = new Dictionary<string, string>
+           {
+               {"token", "UNITY" },
+               {"version", "0.1" }
+           }
+           ,
+           Transport = SocketIOClient.Transport.TransportProtocol.WebSocket
+       });
+       socket.Connect();
+       Dictionary<String, String> a = new Dictionary<string, string>
+       {
+           { "data1", "true" },
+           { "data2", "7" },
+           { "data3", "9" }
+       };
+
+       
+       socket.OnConnected += (sender, e) =>
+       {
+           UnityMainThreadDispatcher.Instance().Enqueue(() => 
+           {
+               SceneManager.LoadScene("Loby");
+           });
+
+       };
+       socket.OnDisconnected += (sender, e) =>
         {
             Debug.Log("disconnect: " + e);
         };
-        
-        socket.On("hello", (a) =>
-        {
-            Debug.Log(a.PacketId);
-            Debug.Log(a.SocketIO);
-            Debug.Log(a);
-            Debug.Log(a.ToString());
-            Debug.Log(socket.Id);
-            Debug.Log(socket.Namespace);
-            Debug.Log(socket.Options);
-
-        });
-        Debug.Log("Connecting...");
-        socket.Connect();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.F7))
         {
-            socket.Emit("hello", "asd");
-        }   
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            socket.Emit("update item", 1, 2, 3);
-        }   
+            socket.Emit("test");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        socket.Disconnect();
     }
 }

@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace SocketIOClient
 {
@@ -26,7 +27,8 @@ namespace SocketIOClient
         {
             var element = GetValue(index);
             string json = element.GetRawText();
-            return SocketIO.JsonSerializer.Deserialize<T>(json, InComingBytes);
+            //return SocketIO.JsonSerializer.Deserialize<T>(json, InComingBytes);
+            return JsonUtility.FromJson<T>(json);
         }
 
         public JsonElement GetValue(int index = 0) => _array[index];
